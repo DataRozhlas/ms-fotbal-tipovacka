@@ -20,10 +20,9 @@ export default function Home() {
           {otazky.map((otazka, index) => (
             <li
               key={index}
-              className="overflow-hidden bg-white px-4 py-6 shadow sm:rounded-md sm:px-6 text-xl"
+              className="bg-white px-4 py-3 sm:rounded-md sm:px-6 text-xl"
             >
-              {otazka}
-              <SelectBox></SelectBox>
+              <SelectBox label={otazka}></SelectBox>
             </li>
           ))}{" "}
         </ol>
