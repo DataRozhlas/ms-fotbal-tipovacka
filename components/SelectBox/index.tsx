@@ -1,70 +1,46 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-
-const countries = [
-  { name: "Katar", id: "qa" },
-  { name: "Brazílie", id: "br" },
-  { name: "Belgie", id: "be" },
-  { name: "Francie", id: "fr" },
-  { name: "Argentina", id: "ar" },
-  { name: "Anglie", id: "gb-eng" },
-  { name: "Španělsko", id: "es" },
-  { name: "Portugalsko", id: "pt" },
-  { name: "Mexiko", id: "mx" },
-  { name: "Nizozemsko", id: "nl" },
-  { name: "Dánsko", id: "dk" },
-  { name: "Německo", id: "de" },
-  { name: "Uruguay", id: "uy" },
-  { name: "Švýcarsko", id: "ch" },
-  { name: "USA", id: "us" },
-  { name: "Chorvatsko", id: "hr" },
-  { name: "Senegal", id: "sn" },
-  { name: "Írán", id: "ir" },
-  { name: "Japonsko", id: "jp" },
-  { name: "Maroko", id: "ma" },
-  { name: "Srbsko", id: "rs" },
-  { name: "Polsko", id: "pl" },
-  { name: "Jižní Korea", id: "kr" },
-  { name: "Tunisko", id: "tn" },
-  { name: "Kamerun", id: "cm" },
-  { name: "Kanada", id: "ca" },
-  { name: "Ekvádor", id: "ec" },
-  { name: "Saudská Arábie", id: "sa" },
-  { name: "Ghana", id: "gh" },
-  { name: "Wales", id: "gb-wls" },
-  { name: "Kostarika", id: "cr" },
-  { name: "Austrálie", id: "au" },
-];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-const SelectBox = (props: { label: string }) => {
-  const [selected, setSelected] = useState({
-    id: undefined,
-    name: "Vyberte tým",
-  });
+const SelectBox = (props: {
+  index: number;
+  label: string;
+  options: { value: string; id: string }[];
+  currentTip: { id: string; value: string }[];
+  setCurrentTip: any;
+}) => {
+  const selected = props.currentTip[props.index];
 
+  const updateData = (option: { id: string; value: string }) => {
+    props.setCurrentTip((prevState: { id: string; value: string }[]) => {
+      const duplikat = prevState.findIndex(item => item.id === option.id);
+      prevState[duplikat] = { id: "", value: "Vyberte tým" };
+      prevState[props.index] = option;
+      return [...prevState];
+    });
+  };
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox value={selected} onChange={updateData}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block text-sm font-medium text-gray-700">
+          <Listbox.Label className="block text-sm font-bold text-gray-700">
             {props.label}
           </Listbox.Label>
           <div className="relative mt-1">
             <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
               <span className="flex items-center">
-                {selected.id && (
+                {selected.id.length > 0 && (
                   <img
                     src={`../../flags/${selected.id}.svg`}
                     alt=""
                     className="h-6 w-6 flex-shrink-0"
                   />
                 )}
-                <span className="ml-3 block truncate">{selected.name}</span>
+                <span className="ml-3 block truncate">{selected.value}</span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                 <ChevronUpDownIcon
@@ -73,6 +49,9 @@ const SelectBox = (props: { label: string }) => {
                 />
               </span>
             </Listbox.Button>
+            <span className="text-sm text-right">
+              stejně se rozhodlo 432 čtenářů před vámi
+            </span>
 
             <Transition
               show={open}
@@ -82,22 +61,22 @@ const SelectBox = (props: { label: string }) => {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {countries.map(country => (
+                {props.options.map(option => (
                   <Listbox.Option
-                    key={country.id}
+                    key={option.id}
                     className={({ active }) =>
                       classNames(
                         active ? "text-white bg-indigo-600" : "text-gray-900",
                         "relative cursor-default select-none py-2 pl-3 pr-9"
                       )
                     }
-                    value={country}
+                    value={option}
                   >
                     {({ selected, active }) => (
                       <>
                         <div className="flex items-center">
                           <img
-                            src={`../../flags/${country.id}.svg`}
+                            src={`../../flags/${option.id}.svg`}
                             alt=""
                             className="h-6 w-6 flex-shrink-0"
                           />
@@ -107,7 +86,7 @@ const SelectBox = (props: { label: string }) => {
                               "ml-3 block truncate"
                             )}
                           >
-                            {country.name}
+                            {option.value}
                           </span>
                         </div>
 
