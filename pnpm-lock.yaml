@@ -8,6 +8,7 @@ specifiers:
   '@types/react-dom': 18.0.8
   autoprefixer: ^10.4.13
   next: 13.0.1
+  outline: link:@heroicons/react/outline
   postcss: ^8.4.18
   prop-types: ^15.8.1
   react: 18.2.0
@@ -23,6 +24,7 @@ dependencies:
   '@types/react': 18.0.24
   '@types/react-dom': 18.0.8
   next: 13.0.1_biqbaboplfbrettd7655fr4n2y
+  outline: link:@heroicons/react/outline
   prop-types: 15.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0

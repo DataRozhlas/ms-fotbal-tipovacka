@@ -14,7 +14,6 @@ const SelectBox = (props: {
   setCurrentTip: any;
 }) => {
   const selected = props.currentTip[props.index];
-
   const updateData = (option: { id: string; value: string }) => {
     props.setCurrentTip((prevState: { id: string; value: string }[]) => {
       const duplikat = prevState.findIndex(item => item.id === option.id);

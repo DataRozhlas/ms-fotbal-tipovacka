@@ -1,6 +1,11 @@
 import { stringify } from "querystring";
 import { useState, useEffect } from "react";
 import { SelectBox } from "../components";
+import {
+  PaperAirplaneIcon,
+  TrashIcon,
+  ArrowDownTrayIcon,
+} from "@heroicons/react/24/outline";
 
 const otazky = ["1. zlato", "2. stříbro", "3. bronz"];
 
@@ -53,6 +58,15 @@ export default function Home() {
     { id: "", value: "Zadejte počet" },
   ]);
 
+  const handleResetClick = () => {
+    setCurrentTip([
+      { id: "", value: "Vyberte tým" },
+      { id: "", value: "Vyberte tým" },
+      { id: "", value: "Vyberte tým" },
+      { id: "", value: "Zadejte počet" },
+    ]);
+  };
+
   return (
     <>
       <div className="mx-auto max-w-5xl sm:px-6 lg:px-8">
@@ -91,6 +105,28 @@ export default function Home() {
             ></SelectBox>
           </li>
         </ol>
+      </div>
+      <div className="mx-auto max-w-5xl sm:px-6 lg:px-8 py-8 flex flex-row flex-wrap justify-center gap-3">
+        <button
+          disabled
+          type="button"
+          className="sm:w-1/4 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
+        >
+          <PaperAirplaneIcon
+            className="-ml-1 mr-3 h-5 w-5"
+            aria-hidden="true"
+          />
+          Odeslat tip
+        </button>
+        <button
+          type="button"
+          onClick={handleResetClick}
+          disabled={currentTip.every(item => item.id === "")}
+          className="sm:w-1/4 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-100 px-6 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-white"
+        >
+          <TrashIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
+          Resetovat
+        </button>
       </div>
     </>
   );
