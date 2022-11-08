@@ -4,8 +4,10 @@ import { SelectBox } from "../components";
 import {
   PaperAirplaneIcon,
   TrashIcon,
-  ArrowDownTrayIcon,
+  ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/outline";
+import TwitterLogo from "../public/twitter-solid.svg";
+import FacebookLogo from "../public/facebook-solid.svg";
 
 const otazky = ["1. zlato", "2. stříbro", "3. bronz"];
 
@@ -67,6 +69,7 @@ export default function Home() {
       { id: "", value: "Vyberte tým" },
       { id: "", value: "Zadejte počet" },
     ]);
+    setSaved(false);
   };
 
   const handlePostClick = () => {
@@ -95,6 +98,48 @@ export default function Home() {
           Sdílejte ho veřejně na Facebooku nebo na Twitteru a můžete vyhrát DAB
           rádio nebo jinu cenu
         </h2>
+        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
+          <img
+            src={
+              "https://data.irozhlas.cz/fotbal-ms-tipovacka-img/fb/qabear10.png"
+            }
+          />
+        </div>
+        <div className="mx-auto max-w-5xl sm:px-6 lg:px-8 py-8 flex flex-row flex-wrap justify-center gap-3">
+          <button
+            type="button"
+            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            <img
+              src={"../facebook-solid.svg"}
+              className="-ml-1 mr-3 h-5 w-5"
+              aria-hidden="true"
+            />
+            Sdílet na Facebooku
+          </button>
+          <button
+            type="button"
+            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            <img
+              src={"../twitter-solid.svg"}
+              className="-ml-1 mr-3 h-5 w-5"
+              aria-hidden="true"
+            />
+            Sdílet na Twitteru
+          </button>
+          <button
+            type="button"
+            onClick={handleResetClick}
+            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            <ArrowLeftOnRectangleIcon
+              className="-ml-1 mr-3 h-5 w-5"
+              aria-hidden="true"
+            />
+            Nový tip
+          </button>
+        </div>
       </div>
     );
   }
