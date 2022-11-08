@@ -58,6 +58,8 @@ export default function Home() {
     { id: "", value: "Zadejte počet" },
   ]);
 
+  const [saved, setSaved] = useState(true);
+
   const handleResetClick = () => {
     setCurrentTip([
       { id: "", value: "Vyberte tým" },
@@ -66,6 +68,36 @@ export default function Home() {
       { id: "", value: "Zadejte počet" },
     ]);
   };
+
+  const handlePostClick = () => {
+    const http = new XMLHttpRequest();
+    const url =
+      "https://lw1k02zee1.execute-api.eu-central-1.amazonaws.com/default/fotbal-euro-tipovacka";
+    http.open("POST", url);
+    http.send(
+      JSON.stringify({
+        prvni: currentTip[0].id,
+        druhy: currentTip[1].id,
+        treti: currentTip[2].id,
+        goly: +currentTip[3].value,
+      })
+    );
+    setSaved(true);
+  };
+
+  if (saved) {
+    return (
+      <div className="mx-auto max-w-5xl sm:px-6 lg:px-8">
+        <h1 className="text-3xl font-bold text-center pb-2">
+          Váš tip byl uložen!
+        </h1>
+        <h2 className="text-xl font-bold text-center">
+          Sdílejte ho veřejně na Facebooku nebo na Twitteru a můžete vyhrát DAB
+          rádio nebo jinu cenu
+        </h2>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -108,9 +140,10 @@ export default function Home() {
       </div>
       <div className="mx-auto max-w-5xl sm:px-6 lg:px-8 py-8 flex flex-row flex-wrap justify-center gap-3">
         <button
-          disabled
+          disabled={currentTip.some(item => item.id === "")}
           type="button"
-          className="sm:w-1/4 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
+          onClick={handlePostClick}
+          className="w-2/5  inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
         >
           <PaperAirplaneIcon
             className="-ml-1 mr-3 h-5 w-5"
@@ -122,7 +155,7 @@ export default function Home() {
           type="button"
           onClick={handleResetClick}
           disabled={currentTip.every(item => item.id === "")}
-          className="sm:w-1/4 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-100 px-6 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-white"
+          className="w-2/5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-100 px-6 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-white"
         >
           <TrashIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
           Resetovat
