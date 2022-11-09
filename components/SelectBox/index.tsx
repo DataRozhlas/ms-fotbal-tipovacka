@@ -1,9 +1,50 @@
 import { Fragment, useState, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { Stats } from "fs";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
+}
+
+function getStats(selected: any, index: number, stats: any) {
+  let numberCases: number = 0;
+  if (index === 3) {
+    numberCases = stats.find((stat: any) => stat.id === selected.value).pocet;
+    return numberCases;
+  }
+  const stat: any = stats.find((stat: any) => stat.id === selected.id);
+  switch (index) {
+    case 0:
+      numberCases = stat.prvni;
+      break;
+    case 1:
+      numberCases = stat.druhy;
+      break;
+    case 3:
+      numberCases = stat.treti;
+      break;
+  }
+  return numberCases;
+}
+
+function sentence(pocet: number) {
+  switch (pocet) {
+    case 0:
+      return "Žádný čtenář před vámi se takto nerozhodl";
+    case 1:
+      return "Jeden čtenář před vámi s rozhodl stejně";
+    case 2:
+      return "Dva čtenáři před vámi se rozhodli stejně";
+    case 3:
+      return "Tři čtenáři před vámi se rozhodli stejně";
+    case 4:
+      return "Čtyři čtenáři před vámi se rozhodli stejně";
+    case 5:
+      return "Pět čtenářů před vámi se rozhodlo stejně";
+    default:
+      return `${pocet} čtenářů před vámi s rozhodlo stejně`;
+  }
 }
 
 const SelectBox = (props: {
@@ -12,6 +53,7 @@ const SelectBox = (props: {
   options: { value: string; id: string }[];
   currentTip: { id: string; value: string }[];
   setCurrentTip: any;
+  stats: any;
 }) => {
   const selected = props.currentTip[props.index];
   const updateData = (option: { id: string; value: string }) => {
@@ -48,9 +90,17 @@ const SelectBox = (props: {
                 />
               </span>
             </Listbox.Button>
-            <span className="text-sm text-right">
-              stejně se rozhodlo 432 čtenářů před vámi
-            </span>
+            {props.stats.length > 0 && selected.id.length > 0 && (
+              <span
+                className={
+                  selected.id.length > 0
+                    ? "text-sm text-right"
+                    : "text-sm text-right invisible"
+                }
+              >
+                {sentence(getStats(selected, props.index, props.stats))}
+              </span>
+            )}
 
             <Transition
               show={open}

@@ -1,4 +1,3 @@
-import { stringify } from "querystring";
 import { useState, useEffect } from "react";
 import { SelectBox } from "../components";
 import {
@@ -6,8 +5,6 @@ import {
   TrashIcon,
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/outline";
-import TwitterLogo from "../public/twitter-solid.svg";
-import FacebookLogo from "../public/facebook-solid.svg";
 
 const otazky = ["1. zlato", "2. stříbro", "3. bronz"];
 
@@ -60,7 +57,17 @@ export default function Home() {
     { id: "", value: "Zadejte počet" },
   ]);
 
-  const [saved, setSaved] = useState(true);
+  const [saved, setSaved] = useState(false);
+
+  const [stats, setStats] = useState([]);
+
+  useEffect(() => {
+    fetch("https://data.irozhlas.cz/fotbal-ms-tipovacka-stats/stats.json")
+      .then(response => response.json()) // nebo .text(), když to není json
+      .then(data => {
+        setStats(data);
+      });
+  }, []);
 
   const handleResetClick = () => {
     setCurrentTip([
@@ -101,7 +108,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
           <img
             src={
-              "https://data.irozhlas.cz/fotbal-ms-tipovacka-img/fb/qabear10.png"
+              "https://data.irozhlas.cz/fotbal-ms-tipovacka-img/fb/frdkhr3.png"
             }
           />
         </div>
@@ -162,6 +169,7 @@ export default function Home() {
                 options={countries}
                 currentTip={currentTip}
                 setCurrentTip={setCurrentTip}
+                stats={stats}
               ></SelectBox>
             </li>
           ))}
@@ -179,6 +187,7 @@ export default function Home() {
               options={goals}
               currentTip={currentTip}
               setCurrentTip={setCurrentTip}
+              stats={stats}
             ></SelectBox>
           </li>
         </ol>
@@ -200,7 +209,7 @@ export default function Home() {
           type="button"
           onClick={handleResetClick}
           disabled={currentTip.every(item => item.id === "")}
-          className="w-2/5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-100 px-6 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-white"
+          className="w-2/5 justify-center inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-white"
         >
           <TrashIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
           Resetovat
