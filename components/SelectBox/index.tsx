@@ -76,7 +76,7 @@ const SelectBox = (props: {
               <span className="flex items-center">
                 {selected.id.length > 0 && (
                   <img
-                    src={`../../flags/${selected.id}.svg`}
+                    src={`flags/${selected.id}.svg`}
                     alt=""
                     className="h-6 w-6 flex-shrink-0"
                   />
@@ -109,7 +109,7 @@ const SelectBox = (props: {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {props.options.map((option, index) => (
                   <Listbox.Option
                     key={props.index === 3 ? index : option.id}
@@ -125,7 +125,7 @@ const SelectBox = (props: {
                       <>
                         <div className="flex items-center">
                           <img
-                            src={`../../flags/${option.id}.svg`}
+                            src={`flags/${option.id}.svg`}
                             alt=""
                             className="h-6 w-6 flex-shrink-0"
                           />

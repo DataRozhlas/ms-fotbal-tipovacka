@@ -77,7 +77,7 @@ export default function Home() {
 
   useEffect(() => {
     postHeightMessage();
-  }, [saved, postHeightMessage]);
+  }, [saved, currentTip, postHeightMessage]);
 
   const handleResetClick = () => {
     setCurrentTip([
@@ -129,7 +129,7 @@ export default function Home() {
               className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               <img
-                src={"../facebook-solid.svg"}
+                src={"facebook-solid.svg"}
                 className="-ml-1 mr-3 h-5 w-5"
                 aria-hidden="true"
               />
@@ -140,7 +140,7 @@ export default function Home() {
               className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               <img
-                src={"../twitter-solid.svg"}
+                src={"twitter-solid.svg"}
                 className="-ml-1 mr-3 h-5 w-5"
                 aria-hidden="true"
               />
@@ -189,7 +189,7 @@ export default function Home() {
             <h2 className="text-xl font-bold text-center py-6">
               A kolik padne ve finále gólů?
             </h2>
-            <ol role="list" className="space-y-3">
+            <ol role="list" className="space-y-3 pb-20">
               <li className="bg-white px-4 py-1 sm:rounded-md sm:px-6 text-xl">
                 <SelectBox
                   index={3}

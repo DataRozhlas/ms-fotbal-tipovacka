@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
+    "production": "aws s3 sync out s3://datarozhlas/ms-fotbal-tipovacka --acl public-read && aws cloudfront create-invalidation --distribution-id E3ABKG4QXPTL3P --paths '/ms-fotbal-tipovacka/*'",
     "start": "next start",
     "lint": "next lint"
   },
