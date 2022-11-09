@@ -11,38 +11,134 @@ import {
 const otazky = ["1. zlato", "2. stříbro", "3. bronz"];
 
 const countries = [
-  { value: "Katar", id: "qa" },
-  { value: "Brazílie", id: "br" },
-  { value: "Belgie", id: "be" },
-  { value: "Francie", id: "fr" },
-  { value: "Argentina", id: "ar" },
-  { value: "Anglie", id: "gb-eng" },
-  { value: "Španělsko", id: "es" },
-  { value: "Portugalsko", id: "pt" },
-  { value: "Mexiko", id: "mx" },
-  { value: "Nizozemsko", id: "nl" },
-  { value: "Dánsko", id: "dk" },
-  { value: "Německo", id: "de" },
-  { value: "Uruguay", id: "uy" },
-  { value: "Švýcarsko", id: "ch" },
-  { value: "USA", id: "us" },
-  { value: "Chorvatsko", id: "hr" },
-  { value: "Senegal", id: "sn" },
-  { value: "Írán", id: "ir" },
-  { value: "Japonsko", id: "jp" },
-  { value: "Maroko", id: "ma" },
-  { value: "Srbsko", id: "rs" },
-  { value: "Polsko", id: "pl" },
-  { value: "Jižní Korea", id: "kr" },
-  { value: "Tunisko", id: "tn" },
-  { value: "Kamerun", id: "cm" },
-  { value: "Kanada", id: "ca" },
-  { value: "Ekvádor", id: "ec" },
-  { value: "Saudská Arábie", id: "sa" },
-  { value: "Ghana", id: "gh" },
-  { value: "Wales", id: "gb-wls" },
-  { value: "Kostarika", id: "cr" },
-  { value: "Austrálie", id: "au" },
+  {
+    value: "Anglie",
+    id: "gb-eng",
+  },
+  {
+    value: "Argentina",
+    id: "ar",
+  },
+  {
+    value: "Austrálie",
+    id: "au",
+  },
+  {
+    value: "Belgie",
+    id: "be",
+  },
+  {
+    value: "Brazílie",
+    id: "br",
+  },
+  {
+    value: "Dánsko",
+    id: "dk",
+  },
+  {
+    value: "Ekvádor",
+    id: "ec",
+  },
+  {
+    value: "Francie",
+    id: "fr",
+  },
+  {
+    value: "Ghana",
+    id: "gh",
+  },
+  {
+    value: "Chorvatsko",
+    id: "hr",
+  },
+  {
+    value: "Írán",
+    id: "ir",
+  },
+  {
+    value: "Japonsko",
+    id: "jp",
+  },
+  {
+    value: "Jižní Korea",
+    id: "kr",
+  },
+  {
+    value: "Kamerun",
+    id: "cm",
+  },
+  {
+    value: "Kanada",
+    id: "ca",
+  },
+  {
+    value: "Katar",
+    id: "qa",
+  },
+  {
+    value: "Kostarika",
+    id: "cr",
+  },
+  {
+    value: "Maroko",
+    id: "ma",
+  },
+  {
+    value: "Mexiko",
+    id: "mx",
+  },
+  {
+    value: "Německo",
+    id: "de",
+  },
+  {
+    value: "Nizozemsko",
+    id: "nl",
+  },
+  {
+    value: "Polsko",
+    id: "pl",
+  },
+  {
+    value: "Portugalsko",
+    id: "pt",
+  },
+  {
+    value: "Saudská Arábie",
+    id: "sa",
+  },
+  {
+    value: "Senegal",
+    id: "sn",
+  },
+  {
+    value: "Srbsko",
+    id: "rs",
+  },
+  {
+    value: "Španělsko",
+    id: "es",
+  },
+  {
+    value: "Švýcarsko",
+    id: "ch",
+  },
+  {
+    value: "Tunisko",
+    id: "tn",
+  },
+  {
+    value: "Uruguay",
+    id: "uy",
+  },
+  {
+    value: "USA",
+    id: "us",
+  },
+  {
+    value: "Wales",
+    id: "gb-wls",
+  },
 ];
 
 let goals: { value: string; id: string }[] = [];
