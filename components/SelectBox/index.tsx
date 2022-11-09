@@ -33,7 +33,7 @@ function sentence(pocet: number) {
     case 0:
       return "Žádný čtenář před vámi se takto nerozhodl";
     case 1:
-      return "Jeden čtenář před vámi s rozhodl stejně";
+      return "Jeden čtenář před vámi se rozhodl stejně";
     case 2:
       return "Dva čtenáři před vámi se rozhodli stejně";
     case 3:
