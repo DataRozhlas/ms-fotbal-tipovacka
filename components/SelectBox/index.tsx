@@ -90,15 +90,13 @@ const SelectBox = (props: {
                 />
               </span>
             </Listbox.Button>
-            {props.stats.length > 0 && selected.id.length > 0 && (
-              <span
-                className={
-                  selected.id.length > 0
-                    ? "text-sm text-right"
-                    : "text-sm text-right invisible"
-                }
-              >
+            {props.stats.length > 0 && selected.id.length > 0 ? (
+              <span className={"text-sm text-right "}>
                 {sentence(getStats(selected, props.index, props.stats))}
+              </span>
+            ) : (
+              <span className={"text-sm text-right invisible"}>
+                placeholder
               </span>
             )}
 
