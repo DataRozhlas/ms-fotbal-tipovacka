@@ -76,7 +76,7 @@ const SelectBox = (props: {
               <span className="flex items-center">
                 {selected.id.length > 0 && (
                   <img
-                    src={`flags/${selected.id}.svg`}
+                    src={`/ms-fotbal-tipovacka/flags/${selected.id}.svg`}
                     alt=""
                     className="h-6 w-6 flex-shrink-0"
                   />
@@ -123,7 +123,7 @@ const SelectBox = (props: {
                       <>
                         <div className="flex items-center">
                           <img
-                            src={`flags/${option.id}.svg`}
+                            src={`/ms-fotbal-tipovacka/flags/${option.id}.svg`}
                             alt=""
                             className="h-6 w-6 flex-shrink-0"
                           />

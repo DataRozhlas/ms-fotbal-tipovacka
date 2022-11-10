@@ -155,22 +155,22 @@ makeImageFb <- function(prvni, druhy, treti, goly) {
     )
   
 image_write(result_7,
-               paste0("fb/",prvni$value,
+               paste0("/Volumes/SanDisk/",prvni$value,
                       druhy$value ,
                       treti$value,
                       goly,
                       ".png"))
 }
 
-#counter <- 0
+counter <- 0
 for (i in 1:32) {
     for (j in 1:32) {
       for (k in 1:32) {
-        for (l in 1:10) {
-          makeImageFb(countries[i,], countries[j,], countries[k,],l)
-          #counter <- counter + 1
-          #print(counter)
-        }
+        #for (l in 1:10) {
+          makeImageFb(countries[i,], countries[j,], countries[k,],0)
+          counter <- counter + 1
+          print(counter)
+      #  }
       }
     }
 }

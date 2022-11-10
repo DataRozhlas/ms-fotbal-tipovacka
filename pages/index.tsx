@@ -214,9 +214,7 @@ export default function Home() {
           </h2>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
             <img
-              src={
-                "https://data.irozhlas.cz/fotbal-ms-tipovacka-img/fb/frdkhr3.png"
-              }
+              src={`https://data.irozhlas.cz/fotbal-ms-tipovacka-img/fb/${currentTip[0].id}${currentTip[1].id}${currentTip[2].id}${currentTip[3].value}.png`}
             />
           </div>
           <div className="mx-auto max-w-5xl sm:px-6 lg:px-8 py-8 flex flex-row flex-wrap justify-center gap-3">
@@ -225,7 +223,7 @@ export default function Home() {
               className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               <img
-                src={"facebook-solid.svg"}
+                src={"/ms-fotbal-tipovacka/facebook-solid.svg"}
                 className="-ml-1 mr-3 h-5 w-5"
                 aria-hidden="true"
               />
@@ -236,7 +234,7 @@ export default function Home() {
               className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               <img
-                src={"twitter-solid.svg"}
+                src={"/ms-fotbal-tipovacka/twitter-solid.svg"}
                 className="-ml-1 mr-3 h-5 w-5"
                 aria-hidden="true"
               />
