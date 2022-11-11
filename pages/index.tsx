@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { SelectBox } from "../components";
 import { usePostMessageWithHeight } from "../hooks";
+import Script from "next/script";
 
 import {
   PaperAirplaneIcon,
@@ -209,8 +210,8 @@ export default function Home() {
             Váš tip byl uložen!
           </h1>
           <h2 className="text-xl font-bold text-center">
-            Sdílejte ho veřejně na Facebooku nebo na Twitteru a můžete vyhrát
-            DAB rádio nebo jinu cenu
+            Sdílejte ho na Facebooku nebo na Twitteru s hashtagem
+            #irozhlastipovacka a můžete vyhrát DAB rádia a další ceny
           </h2>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
             <img
@@ -218,28 +219,44 @@ export default function Home() {
             />
           </div>
           <div className="mx-auto max-w-5xl sm:px-6 lg:px-8 py-8 flex flex-row flex-wrap justify-center gap-3">
-            <button
-              type="button"
-              className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=https://data.irozhlas.cz/ms-fotbal-tipovacka/${
+                currentTip[0].id
+              }${currentTip[1].id}${currentTip[2].id}${+currentTip[3]
+                .value}&hashtag=#irozhlastipovacka`}
+              target="_blank"
             >
-              <img
-                src={"/ms-fotbal-tipovacka/facebook-solid.svg"}
-                className="-ml-1 mr-3 h-5 w-5"
-                aria-hidden="true"
-              />
-              Sdílet na Facebooku
-            </button>
-            <button
-              type="button"
-              className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              <button
+                type="button"
+                className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                <img
+                  src={"/ms-fotbal-tipovacka/facebook-solid.svg"}
+                  className="-ml-1 mr-3 h-5 w-5"
+                  aria-hidden="true"
+                />
+                Sdílet na Facebooku
+              </button>
+            </a>
+            <a
+              href={`https://twitter.com/share?url=https://data.irozhlas.cz/ms-fotbal-tipovacka/${
+                currentTip[0].id
+              }${currentTip[1].id}${currentTip[2].id}${+currentTip[3]
+                .value}&hashtags=irozhlastipovacka`}
+              target="_blank"
             >
-              <img
-                src={"/ms-fotbal-tipovacka/twitter-solid.svg"}
-                className="-ml-1 mr-3 h-5 w-5"
-                aria-hidden="true"
-              />
-              Sdílet na Twitteru
-            </button>
+              <button
+                type="button"
+                className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                <img
+                  src={"/ms-fotbal-tipovacka/twitter-solid.svg"}
+                  className="-ml-1 mr-3 h-5 w-5"
+                  aria-hidden="true"
+                />
+                Sdílet na Twitteru
+              </button>
+            </a>
             <button
               type="button"
               onClick={handleResetClick}
