@@ -215,7 +215,7 @@ export default function Home() {
           </h2>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
             <img
-              src={`https://data.irozhlas.cz/fotbal-ms-tipovacka-img/fb/${currentTip[0].id}${currentTip[1].id}${currentTip[2].id}${currentTip[3].value}.png`}
+              src={`https://d9feuiu2kedce.cloudfront.net/${currentTip[0].id}${currentTip[1].id}${currentTip[2].id}${currentTip[3].value}.png`}
             />
           </div>
           <div className="mx-auto max-w-5xl sm:px-6 lg:px-8 py-8 flex flex-row flex-wrap justify-center gap-3">
@@ -318,7 +318,7 @@ export default function Home() {
               disabled={currentTip.some(item => item.id === "")}
               type="button"
               onClick={handlePostClick}
-              className="w-2/5  inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
+              className="sm:w-2/5 inline-flex justify-center items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
             >
               <PaperAirplaneIcon
                 className="-ml-1 mr-3 h-5 w-5"
@@ -330,7 +330,7 @@ export default function Home() {
               type="button"
               onClick={handleResetClick}
               disabled={currentTip.every(item => item.id === "")}
-              className="w-2/5 justify-center inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-white"
+              className="sm:w-2/5 justify-center inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-white"
             >
               <TrashIcon className="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
               Resetovat
