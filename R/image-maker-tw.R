@@ -5,156 +5,185 @@ library(aws.s3)
 countries <-
   data.frame(
     value = c(
+      "qa",
+      "br",
       "be",
-      "it",
-      "ru",
-      "pl",
-      "ua",
-      "es",
       "fr",
-      "tr",
+      "ar",
       "gb-eng",
-      "cz",
-      "fi",
-      "se",
-      "hr",
-      "at",
-      "nl",
-      "de",
+      "es",
       "pt",
-      "ch",
+      "mx",
+      "nl",
       "dk",
+      "de",
+      "uy",
+      "ch",
+      "us",
+      "hr",
+      "sn",
+      "ir",
+      "jp",
+      "ma" ,
+      "rs",
+      "pl",
+      "kr",
+      "tn",
+      "cm",
+      "ca",
+      "ec",
+      "sa",
+      "gh",
       "gb-wls",
-      "mk",
-      "hu",
-      "sk",
-      "gb-sct"
+      "cr",
+      "au"
     ),
     label = c(
+      "Katar",
+      "Brazílie",
       "Belgie",
-      "Itálie",
-      "Rusko",
-      "Polsko",
-      "Ukrajina",
-      "Španělsko",
       "Francie",
-      "Turecko",
+      "Argentina",
       "Anglie",
-      "Česko",
-      "Finsko",
-      "Švédsko",
-      "Chorvatsko",
-      "Rakousko",
-      "Nizozemsko",
-      "Německo",
+      "Španělsko",
       "Portugalsko",
-      "Švýcarsko",
+      "Mexiko",
+      "Nizozemsko",
       "Dánsko",
+      "Německo",
+      "Uruguay",
+      "Švýcarsko",
+      "USA",
+      "Chorvatsko",
+      "Senegal",
+      "Írán",
+      "Japonsko",
+      "Maroko",
+      "Srbsko",
+      "Polsko",
+      "J. Korea",
+      "Tunisko",
+      "Kamerun",
+      "Kanada",
+      "Ekvádor",
+      "S. Arábie",
+      "Ghana",
       "Wales",
-      "S. Makedonie",
-      "Maďarsko",
-      "Slovensko",
-      "Skotsko"
+      "Kostarika",
+      "Austrálie"
     )
   )
 
-tw_background <- image_read("twitter-blank.png")
+tw_background <- image_read("twitter-blank.jpg", strip=TRUE)
 
+
+mujBucket = get_bucket("fotbal-ms-tipovacka-img")
 
 makeImageTw <- function(prvni, druhy, treti, goly) {
   # nedělej zbytečné obrázky
-  
+
+  filename = paste0(prvni$value,
+                    druhy$value ,
+                    treti$value,
+                    goly,
+                    "-tw.png")
+
+  # if (object_exists(filename, mujBucket)) {
+  #   print("existuje")
+  #   return()
+  # }
+
   if (prvni == druhy || druhy == treti || treti == prvni) {
     print("stejný")
     return()
   }
-  
+
   # první vlajka
   flag <-
-    image_read_svg(paste0("flags/", prvni$value, ".svg"), height = 45)
+    image_read_svg(paste0("public/flags/", prvni$value, ".svg"), height = 45)
   result_1 <-
     image_composite(tw_background,
                     flag,
-                    offset = "+0-95", gravity = "Center")
-  
+                    offset = "+0-130", gravity = "Center")
+
   # druhá vlajka
   flag <-
-    image_read_svg(paste0("flags/", druhy$value, ".svg"), height = 45)
+    image_read_svg(paste0("public/flags/", druhy$value, ".svg"), height = 45)
   result_2 <-
     image_composite(result_1,
                     flag,
-                    offset = "-140-35", gravity = "Center")
-  
+                    offset = "-140-70", gravity = "Center")
+
   # třetí vlajka
   flag <-
-    image_read_svg(paste0("flags/", treti$value, ".svg"), height = 45)
+    image_read_svg(paste0("public/flags/", treti$value, ".svg"), height = 45)
   result_3 <-
     image_composite(result_2,
                     flag,
-                    offset = "+140+5", gravity = "Center")
-  
+                    offset = "+140-30", gravity = "Center")
+
   result_4 <-
     image_annotate(
       result_3,
       prvni$label,
-      font = "Arial",
+      font = "Noticia Text",
       color = "white",
-      location = "+0-45",
+      location = "+0-85",
       size = 22,
       weight = 600,
       gravity = "Center"
     )
-  
+
   result_5 <-
     image_annotate(
       result_4,
       druhy$label,
-      font = "Arial",
+      font = "Noticia Text",
       color = "white",
-      location = "-140+10",
+      location = "-140-30",
       size = 22,
       weight = 600,
       gravity = "Center"
     )
-  
+
   result_6 <-
     image_annotate(
       result_5,
       treti$label,
-      font = "Arial",
+      font = "Noticia Text",
       color = "white",
-      location = "+140+50",
+      location = "+140+10",
       size = 22,
       weight = 600,
       gravity = "Center"
     )
-  
+
   result_7 <-
     image_annotate(
       result_6,
       goly,
-      font = "Arial",
+      font = "Noticia Text",
       color = "white",
-      location = "+120+206",
+      location = "+128+178",
       gravity = "Center",
       size = 24,
       weight = 600
     )
-  
-  put_object(image_write(result_7,
-                         paste0(prvni$value,
-                                druhy$value ,
-                                treti$value,
-                                goly,
-                                ".png")), bucket = "fotbal-euro-tipovacka/tw")
-  
+
+  image_write(result_7, filename)
+
+  put_object(filename, bucket = mujBucket, show_progress=T, acl="public-read")
+  file.remove(list.files(pattern = ".png"))
+
 }
 
+
+
 counter <- 0
-for (i in 1:24) {
-  for (j in 1:24) {
-    for (k in 1:24) {
-      for (l in 1:10) {
+for (i in 18:32) {
+  for (j in 1:32) {
+    for (k in 1:32) {
+      for (l in 0:10) {
         makeImageTw(countries[i, ], countries[j, ], countries[k, ], l)
         counter <- counter + 1
         print(counter)
@@ -162,3 +191,4 @@ for (i in 1:24) {
     }
   }
 }
+
