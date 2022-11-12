@@ -153,7 +153,7 @@ export default function Tip(props: any) {
         />
         <meta
           property="og:image"
-          content={`https://d9feuiu2kedce.cloudfront.net/${props.tip}.png`}
+          content={`https://data.irozhlas.cz/fotbal-ms-tipovacka-img/${props.tip}.png`}
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="628" />
@@ -165,12 +165,12 @@ export default function Tip(props: any) {
           content={`Mistrovství světa ve fotbale letos vyhraje ${vitez}!`}
         />
         <meta
-          name="twitter:description"
-          content="Tipněte si, kdo získá medaile, a vyhrajte digitální rádio!"
+          name="twitter:image"
+          content={`https://data.irozhlas.cz/fotbal-ms-tipovacka-img/${props.tip}-tw.png`}
         />
         <meta
-          name="twitter:image"
-          content={`https://d9feuiu2kedce.cloudfront.net/${props.tip}-tw.png`}
+          name="twitter:description"
+          content="Tipněte si, kdo získá medaile, a vyhrajte digitální rádio!"
         />
       </Head>
       <Script>

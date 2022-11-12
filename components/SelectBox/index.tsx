@@ -21,7 +21,7 @@ function getStats(selected: any, index: number, stats: any) {
     case 1:
       numberCases = stat.druhy;
       break;
-    case 3:
+    case 2:
       numberCases = stat.treti;
       break;
   }
@@ -43,7 +43,7 @@ function sentence(pocet: number) {
     case 5:
       return "Pět čtenářů před vámi se rozhodlo stejně";
     default:
-      return `${pocet} čtenářů před vámi s rozhodlo stejně`;
+      return `${pocet} čtenářů před vámi se rozhodlo stejně`;
   }
 }
 

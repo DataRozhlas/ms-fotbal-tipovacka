@@ -7,6 +7,7 @@ import {
   PaperAirplaneIcon,
   TrashIcon,
   ArrowLeftOnRectangleIcon,
+  ArrowDownTrayIcon,
 } from "@heroicons/react/24/outline";
 
 const otazky = ["1. zlato", "2. stříbro", "3. bronz"];
@@ -215,7 +216,10 @@ export default function Home() {
           </h2>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
             <img
-              src={`https://d9feuiu2kedce.cloudfront.net/${currentTip[0].id}${currentTip[1].id}${currentTip[2].id}${currentTip[3].value}.png`}
+              src={`https://data.irozhlas.cz/fotbal-ms-tipovacka-img/${currentTip[0].id}${currentTip[1].id}${currentTip[2].id}${currentTip[3].value}.png`}
+              width={1200}
+              height={628}
+              className={"h-auto max-w-full aspect-[1200/628]"}
             />
           </div>
           <div className="mx-auto max-w-5xl sm:px-6 lg:px-8 py-8 flex flex-row flex-wrap justify-center gap-3">
@@ -223,7 +227,7 @@ export default function Home() {
               href={`https://www.facebook.com/sharer/sharer.php?u=https://data.irozhlas.cz/ms-fotbal-tipovacka/${
                 currentTip[0].id
               }${currentTip[1].id}${currentTip[2].id}${+currentTip[3]
-                .value}&hashtag=#irozhlastipovacka`}
+                .value}.html&hashtag=#irozhlastipovacka`}
               target="_blank"
             >
               <button
@@ -242,7 +246,7 @@ export default function Home() {
               href={`https://twitter.com/share?url=https://data.irozhlas.cz/ms-fotbal-tipovacka/${
                 currentTip[0].id
               }${currentTip[1].id}${currentTip[2].id}${+currentTip[3]
-                .value}&hashtags=irozhlastipovacka`}
+                .value}.html&hashtags=irozhlastipovacka`}
               target="_blank"
             >
               <button
@@ -255,6 +259,24 @@ export default function Home() {
                   aria-hidden="true"
                 />
                 Sdílet na Twitteru
+              </button>
+            </a>
+            <a
+              href={`https://data.irozhlas.cz/fotbal-ms-tipovacka-img/${
+                currentTip[0].id
+              }${currentTip[1].id}${currentTip[2].id}${+currentTip[3]
+                .value}.png`}
+              download
+            >
+              <button
+                type="button"
+                className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                <ArrowDownTrayIcon
+                  className="-ml-1 mr-3 h-5 w-5"
+                  aria-hidden="true"
+                />
+                Stáhnout obrázek
               </button>
             </a>
             <button
