@@ -174,7 +174,7 @@ export default function Tip(props: any) {
         />
       </Head>
       <Script>
-        window.location.replace("https://www.irozhlas.cz/sport/ms-fotbal/ms-fotbal-2022-katar-tipovacka-ceny__pek")
+        window.location.replace("https://www.irozhlas.cz/node/8865912")
       </Script>
     </div>
   );
